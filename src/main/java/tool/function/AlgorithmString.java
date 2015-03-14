@@ -20,9 +20,47 @@ public class AlgorithmString {
 	 * **/
 	public double entropy(double e,double s){
 		double r =e/s*Math.log10(e/s);
-		System.out.println(r+"\t=\t"+e+"/"+s+"*log("+e+"/"+s+")");
+//		System.out.println(r+"\t=\t"+e+"/"+s+"*log("+e+"/"+s+")");
 		return r;
 	}
+	/**
+	 * @see 變異數演算法Variance
+	 * @param m個數值
+	 * @param n是平均值
+	 * @param 所有domain的值放在arraylist
+	 * @return 變數數的值
+	 * ****/
+	public double variance(ArrayList<Double> arr,double s,double n){
+		double result = 0.0;
+		for(double var:arr){
+			double sub = double_sub(var,n);	//xi值平均值相減
+			double mul = mul(sub,sub);	//算平方
+			result = result + mul;	//累加
+//			System.out.println("相減："+sub+"，接下來平方："+mul);
+			System.out.println(mul);
+		}
+		System.out.println("累積："+result);
+		result = (result/s);	//計算平均值
+		System.out.println("平均值："+result);
+		return result;
+	}
+
+	/**
+	 * @see 求整數(int)型態的平均值
+	 * @param arrInt = ArrayList<int>
+	 * @param n是平均值
+	 * @param 所有domain的值放在arraylist
+	 * @return double
+	 * ****/
+	public double average_int(ArrayList<Double> arrInt){
+		double result = 0.0 , total = 0.0;
+		for(double d:arrInt){
+			total = total + d;
+		}
+		result = (total / arrInt.size());
+		return result;
+	}
+	
 
 	/**
 	 * @see double相加
@@ -57,7 +95,6 @@ public class AlgorithmString {
 		BigDecimal b1 = new BigDecimal(Double.toString(v1));
 		BigDecimal b2 = new BigDecimal(Double.toString(v2));
 		return b1.divide(b2,10,BigDecimal.ROUND_HALF_UP).doubleValue();
-//		return div(v1,v2,10);
 	}
 	/**
 	* @see double 提供精確的乘法運算。
@@ -70,24 +107,7 @@ public class AlgorithmString {
 		BigDecimal b2 = new BigDecimal(Double.toString(v2));
 		return b1.multiply(b2).doubleValue();
 	}
-	/**
-	 * @see 變異數演算法Variance
-	 * @param m個數值
-	 * @param n是平均值
-	 * @param 所有domain的值放在arraylist
-	 * @return 變數數的值
-	 * ****/
-	public double variance(ArrayList<Double> arr,int s,double n){
-		double result = 0.0;
-		for(double var:arr){
-			double sub = double_sub(var,n);
-			double mul = mul(sub,sub);
-			result = result + mul;
-//			double x = result + ();
-		}
-		return (result/s);
-	}
-	
+
 	
 	//計算 log();
 	double  math_log(Map<String, String> map_total){

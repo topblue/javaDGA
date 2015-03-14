@@ -1,8 +1,11 @@
 package tool.function;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+
+import org.json.JSONObject;
 
 public class DomainStringFormat {
 
@@ -26,8 +29,22 @@ public class DomainStringFormat {
 			}
 //			System.out.println("\t"+ele+"\t"+map.containsKey(ele));
 		}
-
 		return map;
 	} 
-
+	public HashMap<Double,Double> domainSize(ArrayList<Double> arr){
+		
+		HashMap<Double,Double> map = new HashMap<Double,Double>();
+		for(double nameSize:arr){
+			if(map.containsKey(nameSize)){
+				double j = map.get(nameSize);
+				++j;
+				map.put(nameSize, j);
+			}else{
+				map.put(nameSize, 1.0);
+			}
+		}
+//		System.out.println("jsonobject："+new JSONObject(map));
+		return map;
+	} 
+	
 }
